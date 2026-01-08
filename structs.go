@@ -568,11 +568,13 @@ type InlineFile struct {
 	ContentID          string
 	ContentType        ContentTypeHeader
 	ContentDisposition ContentDispositionHeader
+	ExtraHeaders       map[string][]string
 	Data               []byte
 }
 
 type AttachedFile struct {
 	ContentType        ContentTypeHeader
 	ContentDisposition ContentDispositionHeader
+	ExtraHeaders       map[string][]string
 	Data               []byte
 }

@@ -172,6 +172,14 @@ func decodeInlineFile(
 		)
 	}
 
+	ifl.ExtraHeaders = make(map[string][]string)
+	for key, value := range part.Header {
+		if key == "Content-Type" || key == "Content-Disposition" || key == "Content-Id" {
+			continue
+		}
+		ifl.ExtraHeaders[key] = value
+	}
+
 	return ifl, nil
 }
 
@@ -240,6 +248,14 @@ func decodeAttachedFileFromPart(
 				"cannot parse Content-Disposition of attached file: %w",
 			err,
 		)
+	}
+
+	afl.ExtraHeaders = make(map[string][]string)
+	for key, value := range part.Header {
+		if key == "Content-Type" || key == "Content-Disposition" {
+			continue
+		}
+		afl.ExtraHeaders[key] = value
 	}
 
 	afl.Data, err = io.ReadAll(decoded)
