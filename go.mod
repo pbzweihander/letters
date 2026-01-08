@@ -1,4 +1,4 @@
-module github.com/mnako/letters
+module github.com/pbzweihander/letters
 
 go 1.24.0
 
